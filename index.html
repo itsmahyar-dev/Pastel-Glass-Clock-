@@ -1,51 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Character encoding -->
-    <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8" />
 
-    <!-- Responsive viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-    <!-- Page title -->
-    <title>Glass Clock</title>
+  <title>Glass Clock</title>
 
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-  <body>
-    <!-- =====================================================
-         MAIN CLOCK
-         ===================================================== -->
+<body>
 
+  <main class="clock-wrapper">
+
+    <!-- Clock Title -->
+    <h1 class="clock-title">CLOCK</h1>
+
+    <!-- Main Clock -->
     <div class="clock">
-      <!-- Second hand -->
+
+      <!-- Second Hand -->
       <div class="second-point"></div>
 
-      <!-- Minute hand -->
+      <!-- Minute Hand -->
       <div class="minute-point"></div>
 
-      <!-- Hour hand -->
+      <!-- Hour Hand -->
       <div class="hour-point"></div>
 
-      <!-- Center bubble -->
+      <!-- Center -->
       <div class="center"></div>
 
-      <!-- =================================================
-             DIGITAL CLOCK
-             ================================================= -->
-
-      <div class="numeric">
-        <!-- Current digital time -->
-        <div id="numeric">00:00:00</div>
-      </div>
     </div>
 
-    <!-- =====================================================
-         JAVASCRIPT
-         ===================================================== -->
+    <!-- Digital Clock -->
+    <div class="numeric">
+      <div id="numeric">00:00:00</div>
+    </div>
 
-    <script src="app.js"></script>
-  </body>
+  </main>
+
+  <script src="app.js"></script>
+
+</body>
 </html>
