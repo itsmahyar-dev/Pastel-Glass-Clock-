@@ -7,7 +7,6 @@
 
 /* =========================================================
    RESET
-   Remove default browser spacing and normalize box sizing
    ========================================================= */
 
 * {
@@ -19,7 +18,6 @@
 
 /* =========================================================
    ROOT VARIABLES
-   Main project colors and reusable values
    ========================================================= */
 
 :root {
@@ -27,13 +25,10 @@
     --cotton-pink: #ffc5da;
     --lavender: #d8caff;
     --mint: #c8f0df;
-
     --soft-white: #fffdfd;
     --text: #667388;
-
     --hand-dark: #829db3;
     --hand-purple: #d6caf1;
-
     --second-pink: #ffabc6;
     --second-purple: #bda2e9;
 }
@@ -41,7 +36,6 @@
 
 /* =========================================================
    BODY
-   Center the clock and create the soft pastel background
    ========================================================= */
 
 body {
@@ -54,35 +48,30 @@ body {
     overflow: hidden;
 
     background:
-        /* Top-left pink glow */
         radial-gradient(
             circle at 8% 12%,
             #ffd5e5 0%,
             transparent 25%
         ),
 
-        /* Top-right blue glow */
         radial-gradient(
             circle at 92% 15%,
             #c9eaff 0%,
             transparent 27%
         ),
 
-        /* Bottom-right lavender glow */
         radial-gradient(
             circle at 88% 88%,
             #ddd2ff 0%,
             transparent 28%
         ),
 
-        /* Bottom-left mint glow */
         radial-gradient(
             circle at 10% 88%,
             #cef2df 0%,
             transparent 25%
         ),
 
-        /* Main background */
         linear-gradient(
             135deg,
             #fff8fb,
@@ -94,10 +83,11 @@ body {
 
 /* =========================================================
    CLOCK
-   Main circular glass clock
    ========================================================= */
 
 .clock {
+    --numeric-gap: 105px;
+
     width: 500px;
     height: 500px;
 
@@ -105,9 +95,16 @@ body {
 
     border-radius: 50%;
 
-    background:
+    /*
+       IMPORTANT:
+       The clock itself is shifted upward by half
+       of the digital display distance.
+       This makes the whole visual group centered.
+    */
 
-        /* Fine glass texture */
+    transform: translateY(calc(var(--numeric-gap) / -2));
+
+    background:
         repeating-radial-gradient(
             circle at 30% 25%,
             rgba(255, 255, 255, 0.09) 0px,
@@ -116,35 +113,30 @@ body {
             transparent 7px
         ),
 
-        /* Baby blue */
         radial-gradient(
             circle at 20% 18%,
             rgba(184, 227, 255, 0.95),
             transparent 33%
         ),
 
-        /* Cotton pink */
         radial-gradient(
             circle at 85% 18%,
             rgba(255, 197, 218, 0.78),
             transparent 32%
         ),
 
-        /* Lavender */
         radial-gradient(
             circle at 78% 80%,
             rgba(216, 202, 255, 0.85),
             transparent 40%
         ),
 
-        /* Mint */
         radial-gradient(
             circle at 15% 80%,
             rgba(200, 240, 223, 0.7),
             transparent 33%
         ),
 
-        /* Milky glass */
         linear-gradient(
             145deg,
             rgba(255, 255, 255, 0.93),
@@ -154,25 +146,17 @@ body {
     border: 4px solid rgba(255, 255, 255, 0.98);
 
     box-shadow:
-        /* Outer white rim */
         0 0 0 5px rgba(255, 255, 255, 0.48),
-
-        /* Soft pastel rim */
         0 0 0 8px rgba(196, 183, 220, 0.12),
 
-        /* Main shadow */
         0 28px 70px rgba(103, 91, 125, 0.28),
 
-        /* Pink glow */
         -25px 18px 65px rgba(255, 165, 200, 0.18),
 
-        /* Blue glow */
         25px -15px 65px rgba(135, 195, 255, 0.18),
 
-        /* Inner glass highlight */
         inset 0 0 45px rgba(255, 255, 255, 0.75),
 
-        /* Bottom depth */
         inset 0 -25px 50px rgba(175, 165, 200, 0.12);
 
     backdrop-filter: blur(20px);
@@ -184,7 +168,6 @@ body {
 
 /* =========================================================
    INNER GLASS RING
-   Decorative ring inside the clock
    ========================================================= */
 
 .clock::before {
@@ -207,7 +190,6 @@ body {
 
 /* =========================================================
    GLASS SHINE
-   Creates a glossy reflection over the clock
    ========================================================= */
 
 .clock::after {
@@ -237,7 +219,6 @@ body {
 
 /* =========================================================
    HOUR HAND
-   Shortest and thickest clock hand
    ========================================================= */
 
 .hour-point {
@@ -272,7 +253,6 @@ body {
 
 /* =========================================================
    MINUTE HAND
-   Longer and thinner than the hour hand
    ========================================================= */
 
 .minute-point {
@@ -307,7 +287,6 @@ body {
 
 /* =========================================================
    SECOND HAND
-   Thin hand with a soft pink and purple gradient
    ========================================================= */
 
 .second-point {
@@ -341,7 +320,6 @@ body {
 
 /* =========================================================
    CENTER BUBBLE
-   Decorative cap covering the center of the hands
    ========================================================= */
 
 .center {
@@ -377,7 +355,6 @@ body {
 
 /* =========================================================
    DIGITAL DISPLAY CONTAINER
-   Positions the digital clock below the main clock
    ========================================================= */
 
 .numeric {
@@ -386,9 +363,10 @@ body {
     position: absolute;
 
     left: 0;
-    bottom: -105px;
+    bottom: calc(var(--numeric-gap) * -1);
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
@@ -398,7 +376,6 @@ body {
 
 /* =========================================================
    DIGITAL TIME
-   Main digital time display
    ========================================================= */
 
 #numeric {
@@ -409,6 +386,7 @@ body {
     padding: 15px 28px;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
@@ -436,16 +414,12 @@ body {
     border-radius: 20px;
 
     box-shadow:
-        /* Floating shadow */
         0 14px 32px rgba(105, 95, 135, 0.2),
 
-        /* Soft outer halo */
         0 0 0 5px rgba(255, 255, 255, 0.28),
 
-        /* Top glass highlight */
         inset 0 1px 0 rgba(255, 255, 255, 1),
 
-        /* Bottom depth */
         inset 0 -8px 18px rgba(180, 170, 200, 0.08);
 
     backdrop-filter: blur(18px);
@@ -457,7 +431,6 @@ body {
 
 /* =========================================================
    DIGITAL SHINE
-   Small decorative highlight on the display
    ========================================================= */
 
 #numeric::before {
@@ -483,7 +456,6 @@ body {
 
 /* =========================================================
    CUTE DOTS
-   Decorative dots in the bottom-right corner
    ========================================================= */
 
 #numeric::after {
@@ -512,22 +484,21 @@ body {
 
 
 /* =========================================================
-   RESPONSIVE DESIGN
-   All responsive rules are kept at the end of the file
-   ========================================================= */
-
-
-/* ---------------------------------------------------------
    TABLET
-   Screens up to 768px
-   --------------------------------------------------------- */
+   Up to 768px
+   ========================================================= */
 
 @media (max-width: 768px) {
 
     .clock {
+        --numeric-gap: 95px;
+
         width: min(430px, 80vw);
         height: min(430px, 80vw);
+
+        transform: translateY(calc(var(--numeric-gap) / -2));
     }
+
 
     .hour-point {
         width: 12px;
@@ -537,6 +508,7 @@ body {
         top: calc(50% - 108px);
     }
 
+
     .minute-point {
         width: 7px;
         height: 185px;
@@ -544,6 +516,7 @@ body {
         left: calc(50% - 3.5px);
         top: calc(50% - 185px);
     }
+
 
     .second-point {
         width: 3px;
@@ -553,6 +526,7 @@ body {
         top: calc(50% - 195px);
     }
 
+
     .center {
         width: 28px;
         height: 28px;
@@ -561,9 +535,6 @@ body {
         top: calc(50% - 14px);
     }
 
-    .numeric {
-        bottom: -95px;
-    }
 
     #numeric {
         min-width: 210px;
@@ -571,6 +542,7 @@ body {
         padding: 14px 24px;
 
         font-size: 23px;
+
         letter-spacing: 2.5px;
 
         border-radius: 19px;
@@ -578,17 +550,22 @@ body {
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    MOBILE
-   Screens up to 600px
-   --------------------------------------------------------- */
+   Up to 600px
+   ========================================================= */
 
 @media (max-width: 600px) {
 
     .clock {
+        --numeric-gap: 88px;
+
         width: min(360px, 78vw);
         height: min(360px, 78vw);
+
+        transform: translateY(calc(var(--numeric-gap) / -2));
     }
+
 
     .hour-point {
         width: 10px;
@@ -598,6 +575,7 @@ body {
         top: calc(50% - 90px);
     }
 
+
     .minute-point {
         width: 7px;
         height: 155px;
@@ -605,6 +583,7 @@ body {
         left: calc(50% - 3.5px);
         top: calc(50% - 155px);
     }
+
 
     .second-point {
         width: 3px;
@@ -614,6 +593,7 @@ body {
         top: calc(50% - 160px);
     }
 
+
     .center {
         width: 23px;
         height: 23px;
@@ -622,9 +602,6 @@ body {
         top: calc(50% - 11.5px);
     }
 
-    .numeric {
-        bottom: -88px;
-    }
 
     #numeric {
         min-width: 195px;
@@ -632,6 +609,7 @@ body {
         padding: 12px 20px;
 
         font-size: 19px;
+
         letter-spacing: 2px;
 
         border-radius: 17px;
@@ -639,17 +617,22 @@ body {
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    SMALL MOBILE
-   Screens up to 400px
-   --------------------------------------------------------- */
+   Up to 400px
+   ========================================================= */
 
 @media (max-width: 400px) {
 
     .clock {
+        --numeric-gap: 76px;
+
         width: 300px;
         height: 300px;
+
+        transform: translateY(calc(var(--numeric-gap) / -2));
     }
+
 
     .hour-point {
         width: 9px;
@@ -659,6 +642,7 @@ body {
         top: calc(50% - 75px);
     }
 
+
     .minute-point {
         width: 6px;
         height: 130px;
@@ -666,6 +650,7 @@ body {
         left: calc(50% - 3px);
         top: calc(50% - 130px);
     }
+
 
     .second-point {
         width: 3px;
@@ -675,6 +660,7 @@ body {
         top: calc(50% - 135px);
     }
 
+
     .center {
         width: 20px;
         height: 20px;
@@ -683,9 +669,6 @@ body {
         top: calc(50% - 10px);
     }
 
-    .numeric {
-        bottom: -76px;
-    }
 
     #numeric {
         min-width: 175px;
@@ -693,6 +676,7 @@ body {
         padding: 10px 15px;
 
         font-size: 16px;
+
         letter-spacing: 1.5px;
 
         border-radius: 15px;
